@@ -1,1 +1,4 @@
 data/*.fastq
+dnaio/
+env/
+results/
