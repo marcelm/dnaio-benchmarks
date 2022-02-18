@@ -4,14 +4,14 @@
     "version": 1,
 
     // The name of the project being benchmarked
-    "project": "project",
+    "project": "dnaio",
 
     // The project's homepage
-    "project_url": "http://project-homepage.org/",
+    "project_url": "https://github.com/marcelm/dnaio/",
 
     // The URL or local path of the source code repository for the
     // project being benchmarked
-    "repo": "",
+    "repo": "https://github.com/marcelm/dnaio.git",
 
     // The Python project's subdirectory in your repo.  If missing or
     // the empty string, the project is assumed to be located at the root
@@ -23,39 +23,32 @@
     //
     // "install_command": ["in-dir={env_dir} python -mpip install {wheel_file}"],
     // "uninstall_command": ["return-code=any python -mpip uninstall -y {project}"],
-    // "build_command": [
-    //     "python setup.py build",
-    //     "PIP_NO_BUILD_ISOLATION=false python -mpip wheel --no-deps --no-index -w {build_cache_dir} {build_dir}"
-    // ],
+    "build_command": [
+        "python -m pip install build",
+        "python -m build -o {build_cache_dir}",
+//        "PIP_NO_BUILD_ISOLATION=false python -mpip wheel --no-deps --no-index -w {build_cache_dir} {build_dir}"
+    ],
 
-    // List of branches to benchmark. If not provided, defaults to "master"
-    // (for git) or "default" (for mercurial).
-    // "branches": ["master"], // for git
-    // "branches": ["default"],    // for mercurial
-
-    // The DVCS being used.  If not set, it will be automatically
-    // determined from "repo" by looking at the protocol in the URL
-    // (if remote), or by looking for special directories, such as
-    // ".git" (if local).
-    // "dvcs": "git",
+    // List of branches to benchmark.
+    "branches": ["main"],
 
     // The tool to use to create environments.  May be "conda",
     // "virtualenv" or other value depending on the plugins in use.
     // If missing or the empty string, the tool will be automatically
     // determined by looking for tools on the PATH environment
     // variable.
-    "environment_type": "virtualenv",
+    "environment_type": "conda",
 
     // timeout in seconds for installing any dependencies in environment
     // defaults to 10 min
     //"install_timeout": 600,
 
     // the base URL to show a commit for the project.
-    // "show_commit_url": "http://github.com/owner/project/commit/",
+    "show_commit_url": "https://github.com/marcelm/dnaio/commit/",
 
     // The Pythons you'd like to test against.  If not provided, defaults
     // to the current version of Python used to run `asv`.
-    // "pythons": ["2.7", "3.6"],
+    "pythons": ["3.7", "3.10"],
 
     // The list of conda channel names to be searched for benchmark
     // dependency packages in the specified order
