@@ -1,31 +1,18 @@
-# Write the benchmarking functions here.
-# See "Writing benchmarks" in the asv docs for more information.
+import os
+import dnaio
 
 
-class TimeSuite:
-    """
-    An example benchmark that times the performance of various kinds
-    of iterating over dictionaries in Python.
-    """
-    def setup(self):
-        self.d = {}
-        for x in range(500):
-            self.d[x] = None
+def data_path(name):
+    return os.path.join(os.environ["ASV_CONF_DIR"], "data", name)
 
-    def time_keys(self):
-        for key in self.d.keys():
+
+def time_parse_SRR020285():
+    with dnaio.open(data_path("SRR020285.fastq")) as f:
+        for record in f:
             pass
 
-    def time_values(self):
-        for value in self.d.values():
-            pass
 
-    def time_range(self):
-        d = self.d
-        for key in range(500):
-            x = d[key]
-
-
-class MemSuite:
-    def mem_list(self):
-        return [0] * 256
+def time_SRR020285_sequence_attribute():
+    with dnaio.open(data_path("SRR020285.fastq")) as f:
+        for record in f:
+            len(record.sequence)
