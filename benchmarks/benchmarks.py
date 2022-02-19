@@ -15,13 +15,13 @@ def time_parse_single(dataset):
 time_parse_single.params = [
     "single43bp", "paired150bp_1", "paired300bp_1", "single9000bp"
 ]
-time_parse_single.param_names = ["dataset"]
+time_parse_single.param_names = ["singleend"]
 
 
-def time_parse_paired(path):
+def time_parse_paired(dataset):
     with dnaio.open(
-        data_path(path + "_1"),
-        file2=data_path(path + "_2"),
+        data_path(dataset + "_1"),
+        file2=data_path(dataset + "_2"),
     ) as f:
         for record in f:
             pass
@@ -29,7 +29,7 @@ def time_parse_paired(path):
 time_parse_paired.params = [
     "paired150bp", "paired300bp"
 ]
-time_parse_single.param_names = ["dataset"]
+time_parse_paired.param_names = ["paired"]
 
 
 class Suite:
