@@ -1,1 +1,1 @@
-{"regressions": [["benchmarks.time_parse_paired('paired300bp')", "graphs/arch-x86_64/branch-main/cpu-Intel(R) Xeon(R) CPU E5-2630L 0 @ 2.00GHz/machine-marcelm.net/num_cpu-12/os-Linux 5.4.0/python-3.7/ram-4194304/benchmarks.time_parse_paired.json", {"python": "3.7"}, 1, 5.530345683917403, 4.562388930469751, [[266, 432, 4.562388930469751, 5.530345683917403]]]]}
+{"regressions": []}
