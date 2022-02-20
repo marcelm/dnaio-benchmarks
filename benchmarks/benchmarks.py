@@ -1,5 +1,12 @@
 import os
 import dnaio
+import io
+
+try:
+    dnaio.Sequence
+except AttributeError:
+    # Missing before v0.2
+    dnaio.Sequence = dnaio._core.Sequence
 
 
 def data_path(name):
