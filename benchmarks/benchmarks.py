@@ -39,6 +39,16 @@ time_parse_paired.params = [
 time_parse_paired.param_names = ["paired"]
 
 
+class EmptyRecords:
+    def setup(self):
+        self.bytes_io = io.BytesIO(b"@\n\n+\n\n" * 10_000_000)
+
+    def time_parse_empty_records(self):
+        with dnaio.open(self.bytes_io) as f:
+            for record in f:
+                pass
+
+
 class Suite:
     def setup(self):
         self.record = dnaio.Sequence("record_name", "ACGT" * 25, "=->!" * 25)
