@@ -13,30 +13,36 @@ def data_path(name):
     return os.path.join(os.environ["ASV_CONF_DIR"], "data", name) + ".fastq"
 
 
-def time_parse_single(dataset):
-    with dnaio.open(data_path(dataset)) as f:
+def time_parse_single(dataset, mode):
+    with dnaio.open(data_path(dataset), mode=mode) as f:
         for record in f:
             pass
 
 
-time_parse_single.params = [
+FASTQ_FILES = [
     "single43bp", "paired150bp_1", "paired300bp_1", "single9000bp"
 ]
-time_parse_single.param_names = ["singleend"]
+MODES = ["r"]
+if hasattr(dnaio, "BytesSequence"):
+    MODES.append("rb")
+
+time_parse_single.params = (FASTQ_FILES, MODES)
+time_parse_single.param_names = ["singleend", "mode"]
 
 
-def time_parse_paired(dataset):
+def time_parse_paired(dataset, mode):
     with dnaio.open(
         data_path(dataset + "_1"),
         file2=data_path(dataset + "_2"),
+        mode=mode,
     ) as f:
         for record in f:
             pass
 
-time_parse_paired.params = [
-    "paired150bp", "paired300bp"
-]
-time_parse_paired.param_names = ["paired"]
+
+PAIRED_FASTQ_FILES = ["paired150bp", "paired300bp"]
+time_parse_paired.params = (PAIRED_FASTQ_FILES, MODES)
+time_parse_paired.param_names = ["paired", "mode"]
 
 
 class EmptyRecords:
