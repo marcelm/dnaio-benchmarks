@@ -134,9 +134,21 @@ def bioinfokit(path):
         pass
 
 
+# pip install pysam
+from pysam import FastxFile
+
+def pysam_fastxfile(path):
+    "pysam.FastxFile"
+    # returns pysam.libcfaidx.FastxRecord instances
+    with FastxFile(path) as f:
+        for record in f:
+            pass
+
+
 def main():
     for func in (
         dnaio_open,
+        pysam_fastxfile,
         bioinfokit,
         ngs_plumbing_parsing,
         # skbio_io_read,  # super slow
