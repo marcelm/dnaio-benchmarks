@@ -122,9 +122,22 @@ def fastqandfurious(path):
             pass
 
 
+# https://www.reneshbedre.com/blog/filereaders.html#fastq-reader
+# pip install bioinfokit
+# - returns tuples, first element is header with '@' still included
+from bioinfokit.analys import fastq as bioinfokit_fastq
+
+
+def bioinfokit(path):
+    "bioinfokit.analys.fastq.fastq_reader"
+    for record in bioinfokit_fastq.fastq_reader(file=path):
+        pass
+
+
 def main():
     for func in (
         dnaio_open,
+        bioinfokit,
         ngs_plumbing_parsing,
         # skbio_io_read,  # super slow
         readfq,
