@@ -17,7 +17,7 @@ def ngs_plumbing_parsing(path):
 
 
 # http://scikit-bio.org/
-# pip install scikit-bio
+# pip install scikit-bio 'scipy<1.9'
 import skbio.io
 
 def skbio_io_read(path):
