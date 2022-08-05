@@ -1,3 +1,5 @@
+# Benchmark results
+
 [Benchmarks](https://marcelm.github.io/dnaio-benchmarks/) for [dnaio](https://github.com/marcelm/dnaio)
 
 # Download benchmarking datasets
@@ -24,7 +26,7 @@ Run benchmarks with:
 
 Publish:
 
-    asv publish && rsync -va --delete html/ some/where/
+    asv gh-pages
 
 
 # Running library comparisons
