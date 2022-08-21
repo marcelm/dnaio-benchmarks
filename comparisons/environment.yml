@@ -6,4 +6,6 @@ channels:
 dependencies:
   - python=3.10  # Update to 3.11 once released
   - tox
-  - fastp  # Cannot be installed by tox. The bioconda version is build with isa-l and libdeflate.
+  # Dependencies for fastp
+  - isa-l
+  - libdeflate
