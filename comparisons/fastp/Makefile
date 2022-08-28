@@ -7,10 +7,10 @@ BINDIR ?= $(PREFIX)/bin
 INCLUDE_DIRS ?=
 LIBRARY_DIRS ?=
 
-SRC := $(wildcard ${DIR_SRC}/*.cpp)
+SRC := $(wildcard ${DIR_SRC}/*.cpp) read_program.cpp
 OBJ := $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${SRC}))
 
-TARGET := fastp
+TARGET := read_program
 
 BIN_TARGET := ${TARGET}
 
@@ -27,6 +27,9 @@ ${BIN_TARGET}:${OBJ}
 
 static:${OBJ}
 	$(CXX) $(OBJ) -o ${BIN_TARGET} $(STATIC_LD_FLAGS)
+
+${DIR_OBJ}/%.o:./%.cpp make_obj_dir
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
 ${DIR_OBJ}/%.o:${DIR_SRC}/%.cpp make_obj_dir
 	$(CXX) -c $< -o $@ $(CXXFLAGS)

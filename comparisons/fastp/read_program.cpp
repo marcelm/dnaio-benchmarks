@@ -2,7 +2,7 @@
 #include "fastp/src/read.h"
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]){
     if (argc != 1) {
         fprintf(stderr, "Input file must be given");
         return 1;
@@ -15,5 +15,6 @@ int main(int argc, char *argv[]) {
         if (record == NULL) {
             return 0;
         }
+    }
     return 0;
 }
