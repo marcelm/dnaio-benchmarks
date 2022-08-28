@@ -1,6 +1,11 @@
 #include "fastp/src/fastqreader.h"
 #include "fastp/src/read.h"
 #include <stdio.h>
+#include <mutex>
+
+// fastp depends on these global variables
+string command;
+mutex logmtx;
 
 int main(int argc, char* argv[]){
     if (argc != 1) {
