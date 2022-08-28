@@ -9,3 +9,4 @@ dependencies:
   - libdeflate  # fastp build dependency
   - setuptools-scm
   - cython
+  - hyperfine
