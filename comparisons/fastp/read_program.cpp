@@ -25,6 +25,7 @@ int main(int argc, char* argv[]){
             fprintf(stderr, "counted %d records\n", records);
             return 0;
         }
+        delete record;
         records += 1;
     }
     return 0;
