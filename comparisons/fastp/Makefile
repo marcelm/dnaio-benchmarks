@@ -12,7 +12,7 @@ OBJ := $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${SRC}))
 
 TARGET := read.py
 
-BIN_TARGET := ${TARGET}
+BIN_TARGET := read_program
 
 CXX ?= g++
 CXXFLAGS := -std=c++11 -pthread -g -O3 -I${DIR_INC} $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) ${CXXFLAGS}
@@ -21,6 +21,8 @@ STATIC_FLAGS := -static -Wl,--no-as-needed -pthread
 LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(LIBS) $(LD_FLAGS)
 STATIC_LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(STATIC_FLAGS) $(LIBS) $(STATIC_LD_FLAGS)
 
+read.py:read_program
+	ln -fs read_program read.py
 
 ${BIN_TARGET}:${OBJ}
 	$(CXX) $(OBJ) -o $@ $(LD_FLAGS)
