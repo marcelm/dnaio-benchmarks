@@ -10,7 +10,7 @@ LIBRARY_DIRS ?=
 SRC := $(wildcard ${DIR_SRC}/*.cpp) read_program.cpp
 OBJ := $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${SRC}))
 
-TARGET := read_program
+TARGET := read.py
 
 BIN_TARGET := ${TARGET}
 
