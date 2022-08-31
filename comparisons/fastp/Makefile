@@ -19,7 +19,7 @@ STATIC_FLAGS := -static -Wl,--no-as-needed -pthread
 LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(LIBS) $(LD_FLAGS)
 STATIC_LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(STATIC_FLAGS) $(LIBS) $(STATIC_LD_FLAGS)
 
-all: read.py read_and_write.py read_program read_and_write_program
+all: read.py read_and_write.py read_program read_and_write_program read_paired_program read_paired.py
 
 %.py:%_program
 	ln -fs $*_program $*.py
