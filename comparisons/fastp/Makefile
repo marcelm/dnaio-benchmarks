@@ -1,5 +1,5 @@
 DIR_INC := ./inc
-DIR_SRC := ./fastp/src
+FASTP_DIR_SRC := ./fastp/src
 DIR_OBJ := ./obj
 
 PREFIX ?= /usr/local
@@ -7,12 +7,10 @@ BINDIR ?= $(PREFIX)/bin
 INCLUDE_DIRS ?=
 LIBRARY_DIRS ?=
 
-SRC := $(wildcard ${DIR_SRC}/*.cpp) read_program.cpp
-OBJ := $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${SRC}))
+FASTP_SRC := $(wildcard ${FASTP_DIR_SRC}/*.cpp)
+FASTP_OBJ := $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${FASTP_SRC}))
 
-TARGET := read.py
-
-BIN_TARGET := read_program
+TARGET := all
 
 CXX ?= g++
 CXXFLAGS := -std=c++11 -pthread -g -O3 -I${DIR_INC} $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) ${CXXFLAGS}
@@ -21,23 +19,26 @@ STATIC_FLAGS := -static -Wl,--no-as-needed -pthread
 LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(LIBS) $(LD_FLAGS)
 STATIC_LD_FLAGS := $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(STATIC_FLAGS) $(LIBS) $(STATIC_LD_FLAGS)
 
-read.py:read_program
-	ln -fs read_program read.py
+all: read.py read_and_write.py read_program read_and_write_program
 
-${BIN_TARGET}:${OBJ}
-	$(CXX) $(OBJ) -o $@ $(LD_FLAGS)
+%.py:%_program
+	ln -fs $*_program $*.py
 
-static:${OBJ}
-	$(CXX) $(OBJ) -o ${BIN_TARGET} $(STATIC_LD_FLAGS)
+./%_program:./%_program.o ${FASTP_OBJ}
+	$(CXX) $(FASTP_OBJ) ./$*_program.o -o $*_program $(LD_FLAGS)
 
-${DIR_OBJ}/%.o:./%.cpp make_obj_dir
+static:${FASTP_OBJ}
+	$(CXX) $(FASTP_OBJ) -o ${BIN_TARGET} $(STATIC_LD_FLAGS)
+
+./%.o:./%.cpp
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
-${DIR_OBJ}/%.o:${DIR_SRC}/%.cpp make_obj_dir
+${DIR_OBJ}/%.o:${FASTP_DIR_SRC}/%.cpp make_obj_dir
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
 .PHONY:clean
 .PHONY:static
+.PHONY:all$(notdir ${SRC})
 clean:
 	@if test -d $(DIR_OBJ) ; \
 	then \
