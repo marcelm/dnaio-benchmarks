@@ -1,6 +1,12 @@
+name: dnaio-benchmarks
 channels:
   - conda-forge
   - defaults
 dependencies:
+  - tox
+  - python=3.10  # Update to 3.11 once released.
+  - isa-l  # fastp build dependency
+  - libdeflate  # fastp build dependency
   - setuptools-scm
   - cython
+  - hyperfine

@@ -1,0 +1,3 @@
+[submodule "comparisons/fastp/fastp"]
+	path = comparisons/fastp/fastp
+	url = https://github.com/OpenGene/fastp.git

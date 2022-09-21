@@ -1,4 +1,6 @@
 data/*.fastq
+data/*.fastq.gz
 dnaio/
 env/
 results/
+.tox/
