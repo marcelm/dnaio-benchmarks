@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   - tox
-  - python=3.10  # Update to 3.11 once released.
+  - python=3.11  # Update to 3.11 once released.
   - isa-l  # fastp build dependency
   - libdeflate  # fastp build dependency
   - setuptools-scm
